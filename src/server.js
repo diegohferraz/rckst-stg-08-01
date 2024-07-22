@@ -9,7 +9,11 @@ app.get("/", (request, response) => {
 });
 
 app.get("/user/:name", (request, response) => {
-  response.send(`Hello ${request.params.name}`);
+  const { page, limit } = request.query;
+
+  response.send(
+    `Hello ${request.params.name}. Page = ${page}, Limit = ${limit}`
+  );
 });
 
 app.get("/user/:name/:surname", (request, response) => {
