@@ -4,6 +4,16 @@ const UsersController = require("../controllers/usersController");
 const usersController = new UsersController();
 const usersRoutes = Router();
 
+function myMiddleware(request, response, next) {
+  console.log("Você passou pelo middleware");
+  console.log(request.body);
+
+  if (!request.body.isAdmin) {
+    return response.status(401).json({ message: "user unauthorized" });
+  }
+  next();
+}
+
 usersRoutes.get("/:name", (request, response) => {
   const { page, limit } = request.query;
 
@@ -17,8 +27,6 @@ usersRoutes.get("/:name/:surname", (request, response) => {
   response.send(`Hello ${name} ${surname}`);
 });
 
-usersRoutes.post("/", (request, response) => {
-  usersController.create(request, response);
-});
+usersRoutes.post("/", myMiddleware, usersController.create);
 
 module.exports = usersRoutes;
