@@ -8,6 +8,10 @@ app.get("/", (request, response) => {
   response.send("Hello world!");
 });
 
+app.get("/user/:name", (request, response) => {
+  response.send(`Hello ${request.params.name}`);
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on Port ${PORT}`);
 });
