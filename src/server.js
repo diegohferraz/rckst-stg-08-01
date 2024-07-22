@@ -1,30 +1,15 @@
 const express = require("express");
 
+const routes = require("./routes");
+
 const app = express();
 app.use(express.json());
+app.use(routes);
 
 const PORT = 3333;
 
-app.get("/", (request, response) => {
+app.get("/", (_, response) => {
   response.send("Hello world!");
-});
-
-app.get("/user/:name", (request, response) => {
-  const { page, limit } = request.query;
-
-  response.send(
-    `Hello ${request.params.name}. Page = ${page}, Limit = ${limit}`
-  );
-});
-
-app.get("/user/:name/:surname", (request, response) => {
-  const { name, surname } = request.params;
-  response.send(`Hello ${name} ${surname}`);
-});
-
-app.post("/users", (request, response) => {
-  const { name, email, password } = request.body;
-  response.json({ name, email, password });
 });
 
 app.listen(PORT, () => {
