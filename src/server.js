@@ -1,6 +1,7 @@
 const express = require("express");
 
 const app = express();
+app.use(express.json());
 
 const PORT = 3333;
 
@@ -19,6 +20,11 @@ app.get("/user/:name", (request, response) => {
 app.get("/user/:name/:surname", (request, response) => {
   const { name, surname } = request.params;
   response.send(`Hello ${name} ${surname}`);
+});
+
+app.post("/users", (request, response) => {
+  const { name, email, password } = request.body;
+  response.json({ name, email, password });
 });
 
 app.listen(PORT, () => {
