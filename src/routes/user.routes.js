@@ -28,5 +28,6 @@ usersRoutes.get("/:name/:surname", (request, response) => {
 });
 
 usersRoutes.post("/", myMiddleware, usersController.create);
+usersRoutes.put("/:id", usersController.update);
 
 module.exports = usersRoutes;
