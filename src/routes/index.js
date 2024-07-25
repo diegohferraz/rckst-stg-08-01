@@ -1,11 +1,15 @@
-// O Objetivo desse arquivo é reunir todas as definições de rotas existentes
 const { Router } = require("express");
 
-const usersRouter = require("./user.routes");
+const usersRoutes = require("./user.routes");
+const notesRoutes = require("./notes.routes");
+const tagsRoutes = require("./tags.routes");
+const sessionRoutes = require("./sessions.routes");
 
 const routes = Router();
 
-//Toda vez que acessarem alguma coisa /users, vai usar o usersRouter
-routes.use("/users", usersRouter);
+routes.use("/users", usersRoutes);
+routes.use("/notes", notesRoutes);
+routes.use("/tags", tagsRoutes);
+routes.use("/session", sessionRoutes);
 
 module.exports = routes;

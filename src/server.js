@@ -2,10 +2,10 @@ require("express-async-errors");
 
 const AppError = require("./utils/AppError");
 const express = require("express");
-const migrationsRun = require("./databases/migrations");
+// const migrationsRun = require("./databases/migrations");
 const routes = require("./routes");
 
-migrationsRun();
+// migrationsRun();
 
 const app = express();
 app.use(express.json());
